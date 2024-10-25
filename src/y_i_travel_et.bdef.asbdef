@@ -1,0 +1,36 @@
+interface;
+use draft;
+
+define behavior for y_i_travel_et alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use action acceptTravel;
+  use action rejectTravel;
+  use action deductDiscount;
+  use action validateCustomerID;
+  use action validateAgencID;
+  use action validateDatesRange;
+  use action validateCurrencyCodeID;
+
+  use action Resume;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+
+  use association _booking { create; with draft; }
+}
+
+define behavior for y_i_booking_et alias Booking
+{
+  use update;
+  use delete;
+
+  use action validateFlightsCosts;
+
+  use association _Travel { with draft; }
+  use association _booking_supplement { create; with draft; }
+}

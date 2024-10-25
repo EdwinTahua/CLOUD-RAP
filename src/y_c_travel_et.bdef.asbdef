@@ -1,0 +1,48 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for y_c_travel_et alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+  use action acceptTravel;
+  use action rejectTravel;
+  use action deductDiscount;
+  use action validateCustomerID;
+  use action validateAgencID;
+  use action validateDatesRange;
+  use action validateCurrencyCodeID;
+
+  use action Resume;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+
+  use association _booking { create; with draft; }
+}
+
+define behavior for y_c_booking_et alias Booking
+{
+  use update;
+  use delete;
+
+  use action validateFlightsCosts;
+
+  use association _Travel { with draft; }
+  use association _booking_supplement { create; with draft; }
+}
+
+define behavior for y_c_book_suppl_et alias book_suppl_et
+{
+  use update;
+  use delete;
+
+  use action validateSupplementPrice;
+
+  use association _travel { with draft; }
+  use association _booking { with draft; }
+}

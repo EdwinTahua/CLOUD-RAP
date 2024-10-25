@@ -1,0 +1,9 @@
+@EndUserText.label: 'SD Travel'
+define service Ysd_travel_et {
+  expose y_c_travel_et           as Travel;
+  expose y_c_booking_et          as Booking;
+  expose y_c_book_suppl_et       as BookingSupplement;
+  expose /DMO/I_Supplement_StdVH as Supplement;
+  expose I_CurrencyStdVH         as Currency;
+  expose I_CountryVH             as Country;
+}

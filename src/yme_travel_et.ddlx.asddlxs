@@ -1,0 +1,184 @@
+@Metadata.layer: #CORE
+//#CUSTOMER
+//#PARTNER
+//#INDUSTRY
+//#LOCALIZATION
+//#CORE
+@UI:{
+    headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title: {
+        type: #STANDARD,
+//        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'TravelId'
+    }
+},
+presentationVariant: [{ sortOrder: [{ by : 'TravelId',
+                                      direction: #DESC }],
+
+                                      visualizations: [{ type: #AS_LINEITEM }] }]
+}
+annotate entity y_c_travel_et
+    with 
+{
+@UI.facet: [
+
+    {
+        id: 'Travel',
+        label: 'Travel',
+        purpose: #STANDARD,
+        type: #IDENTIFICATION_REFERENCE,
+        position: 10
+  //        targetQualifier: 'hdr_cliente'
+    },
+
+        {
+            id: 'Booking',
+            purpose: #STANDARD,
+            type: #LINEITEM_REFERENCE,  //asociotation
+            label: 'Booking',
+            position: 20,
+            targetElement: '_booking'
+        }
+
+    ]
+
+  @UI.hidden: true
+  TravelUuid;
+  @UI : { lineItem: [{ position: 10,
+                       importance: #HIGH },
+                         { type: #FOR_ACTION,
+                              dataAction: 'acceptTravel',
+                              label: 'Accept Travel',
+                              position: 10
+
+                               },
+
+                            { type: #FOR_ACTION,
+                              dataAction: 'rejectTravel',
+                              label: 'Reject Travel',
+                              position: 20
+
+                               },
+
+                            { type: #FOR_ACTION,
+                              dataAction: 'deductDiscount',
+                              label: 'Discont Travel',
+                              position: 30
+
+                         }
+                       ],
+
+          identification: [{ position: 10, label: 'Travel ID' },
+                            { type: #FOR_ACTION,
+                              dataAction: 'acceptTravel',
+                              label: 'Accept Travel',
+                              position: 10
+
+                               },
+
+                            { type: #FOR_ACTION,
+                              dataAction: 'rejectTravel',
+                              label: 'Reject Travel',
+                              position: 20
+
+                               },
+
+                            { type: #FOR_ACTION,
+                              dataAction: 'deductDiscount',
+                              label: 'Discont Travel',
+                              position: 30
+
+                               }
+          ],
+
+          selectionField: [{ position: 10 }]
+  //           fieldGroup: [{ qualifier: 'DetallesCliente',
+  //                          position: 40 }]
+  //  identification: [{ position: 30, label: 'Nombre' }]
+        }
+  //@UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 30 }]
+
+  TravelId;
+  @UI : { lineItem: [{ position: 20,
+                       importance: #HIGH }],
+                       selectionField: [{ position: 20 }]
+  //           fieldGroup: [{ qualifier: 'DetallesCliente',
+  //                          position: 40 }]
+  //  identification: [{ position: 30, label: 'Nombre' }]
+        }
+  //@UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 30 }]
+  @UI.identification:  [{ position: 20, label: 'Agency ID' }]
+
+  AgencyID;
+  @UI : { lineItem: [{ position: 30,
+                       importance: #HIGH }]
+  //           fieldGroup: [{ qualifier: 'DetallesCliente',
+  //                          position: 40 }]
+  //  identification: [{ position: 30, label: 'Nombre' }]
+        }
+  //@UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 30 }]
+  @UI.identification: [{ position: 30, label: 'Nombre' }]
+  AgencyName;
+  @UI : { lineItem: [{ position: 40, importance: #HIGH }],
+          identification: [{ position: 40, label: 'Customer ID' }],
+          selectionField: [{ position: 30 }]
+                    }
+  CustomerId;
+  @UI : { lineItem: [{ position: 50,
+                       importance: #HIGH }]
+  //           fieldGroup: [{ qualifier: 'DetallesCliente',
+  //                          position: 40 }]
+  //  identification: [{ position: 30, label: 'Nombre' }]
+        }
+  //@UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 30 }]
+  @UI.identification: [{ position: 60, label: 'Nombre' }]
+  CustomerName;
+
+  @UI : { lineItem: [{ position: 70, importance: #LOW }],
+        identification: [{ position: 70, label: 'End Date' }]
+                  }
+
+  BeginDate;
+  @UI : { lineItem: [{ position: 80, importance: #LOW }],
+        identification: [{ position: 80, label: 'End Date' }]
+                  }
+  EndDate;
+
+  @UI : { lineItem: [{ position: 90, importance: #MEDIUM }],
+        identification: [{ position: 90 }]
+                  }
+
+  BookingFee;
+  //  //TotalPrice;
+  //  @UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 10 }]
+  //  CurrencyCode;
+  //  @UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 20 }]
+  //  Description;
+
+  @UI : { lineItem: [{ position: 100, importance: #HIGH }],
+        identification: [{ position: 100 }],
+        selectionField: [{ position: 40 }],
+        textArrangement: #TEXT_ONLY }
+
+  OverallStatus;
+  //  @UI.fieldGroup: [{ qualifier: 'fgDetCliente' , position: 40 }]
+  //  OverallStatusText;
+  //LocalCreatedBy;
+  //LocalCreatedAt;
+  //LocalLastChangedBy;
+
+  @UI.hidden: true
+  CurrencyCode;
+    
+  @UI.hidden: true
+  LocalLastChangedAt;
+  ///* Associations */
+  //_Agency;
+  //_booking;
+  //_Currency;
+  //_Customer;
+  //_OverallStatus;
+    
+}
